@@ -101,7 +101,7 @@ def upload_to_mega(output_pdf,compress_pdf_path,title,images_folder):
 
         m.upload(output_pdf,folder_handle)
         print("pdf uploded..")
-        m.upload(f"{zip_file}.zip",folder_handle)
+        # m.upload(f"{zip_file}.zip",folder_handle)
         print("zip file uploded..")
 
         print(compress_pdf_path)
