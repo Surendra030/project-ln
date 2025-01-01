@@ -10,21 +10,26 @@ from get_img_id import get_images_urls
 from save_img_pdf import main_pdf
 from get_links import main_load
 
-url = 'https://anyflip.com/explore?q=Mahouka%20Koukou%20no%20Rettousei'
-
-data = main_books_fun(url)
 
 
-sindex=1
-eindex=41
+with open('data.json','r')as f:
+    data = json.load(f)
 
-target_name = "Mahouka Koukou no Rettousei"
+# url = 'https://anyflip.com/explore?q=Mahouka%20Koukou%20no%20Rettousei'
 
-data = [
-    {**i, 'serial_num': idx}  # Add the 'serial_num' label starting from sindex
-    for idx, i in enumerate(data, start=sindex)  # Start enumerate from sindex
-    if target_name.lower() in i['title'].lower()  # Filter for "jobless" in title
-]
+# data = main_books_fun(url)
+
+
+# sindex=1
+# eindex=41
+
+# target_name = "Mahouka Koukou no Rettousei"
+
+# data = [
+#     {**i, 'serial_num': idx}  # Add the 'serial_num' label starting from sindex
+#     for idx, i in enumerate(data, start=sindex)  # Start enumerate from sindex
+#     if target_name.lower() in i['title'].lower()  # Filter for "jobless" in title
+# ]
 
 
 constructed_urls = []
@@ -51,8 +56,8 @@ for index,obj in enumerate(data):
     print("entering the loop.")
     img_url_data = get_images_urls(obj['href'])
     #saving pdf file to cloud
-    temp_title = f"{obj['serial_num']}_{obj['title']}"
+    temp_title = f"{obj['vol']}_{obj['title']}"
     title = sanitize_title(temp_title)
 
     main_pdf(img_url_data,title)
-    main_load(target_name)
+    # main_load(target_name)
